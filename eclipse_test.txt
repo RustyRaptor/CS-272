@@ -1,1 +1,4 @@
-1023
+Welcome to Java
+1567142924888
+Summation for number 20 is: 1048575
+Summation for number 10 is: 1023
