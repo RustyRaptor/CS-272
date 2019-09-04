@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 /**
  * @author Ziad Arafat
- *
+ * Main method is at very bottom.
  */
 public class Employee {
 	private String name;
@@ -91,8 +91,7 @@ public class Employee {
 	// returns a string describing all the values.
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", no=" + no + ", age=" + age +
-				", state=" + state + ", zipCode=" + zipCode
+		return "Employee [name=" + name + ", no=" + no + ", age=" + age + ", state=" + state + ", zipCode=" + zipCode
 				+ ", advisors=" + Arrays.toString(advisors) + "]";
 	}
 
@@ -122,9 +121,9 @@ public class Employee {
 	 * @param e2 another employee object to get advisors from
 	 */
 	public static int[] getAllAdvisors(Employee e1, Employee e2) {
-		if((e1 == null)||(e2 == null)) {
+		if ((e1 == null) || (e2 == null)) {
 			System.out.println("This Employee is NULL");
-			return new int[] {0,0,0};
+			return new int[] { 0, 0, 0 };
 		}
 		int[] adv1 = e1.getAdvisors();
 		int[] adv2 = e2.getAdvisors();
@@ -164,14 +163,16 @@ public class Employee {
 	 */
 	public static void descBubbleSort(int[] arr) {
 		int n = arr.length;
-		for (int i = 0; i < n - 1; i++)
-			for (int j = 0; j < n - i - 1; j++)
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n - i - 1; j++) {
 				if (arr[j] < arr[j + 1]) {
 					// swap arr[j+1] and arr[i]
 					int temp = arr[j];
 					arr[j] = arr[j + 1];
 					arr[j + 1] = temp;
 				}
+			}
+		}
 	}
 
 	// sets duplicate items in an array to 0
@@ -180,14 +181,16 @@ public class Employee {
 	 */
 	public static void removeDup(int[] arr) {
 		int n = arr.length;
-		for (int i = 0; i < n - 1; i++)
-			for (int j = 0; j < n - i - 1; j++)
+		for (int i = 0; i < n - 1; i++) {
+			for (int j = 0; j < n - i - 1; j++) {
 				if (arr[j] == arr[j + 1]) {
 					// swap arr[j+1] and arr[i]
 					int temp = arr[j];
 					arr[j] = 0;
 					arr[j + 1] = temp;
 				}
+			}
+		}
 	}
 
 	// counts number of non-zero items in an array
@@ -220,73 +223,67 @@ public class Employee {
 		}
 		return newMerged;
 	}
-	
-	
-	// random values on an array of employees. 
+
+	// random values on an array of employees.
 	/**
 	 * @param emps an array of employee objects to set values on
 	 */
 	public static void setAllAdv(Employee[] emps) {
 		int cnt = 0;
-		for(int i = 0; i < emps.length; i++) {
-			if(emps[i] == null) {
+		for (int i = 0; i < emps.length; i++) {
+			if (emps[i] == null) {
 				return;
 			}
-			if(!(emps[i] instanceof Employee)) {
+			if (!(emps[i] instanceof Employee)) {
 				return;
 			}
 			emps[i].setName("Student");
-			emps[i].setAdvisors(new int[] { 
-					(int) getRandomInt(1, 20), 
-					(int) getRandomInt(1, 20), 
-					(int) getRandomInt(1, 20) });
+			emps[i].setAdvisors(
+					new int[] { (int) getRandomInt(1, 20), (int) getRandomInt(1, 20), (int) getRandomInt(1, 20) });
 			emps[i].setAge((int) getRandomInt(18, 25));
 			emps[i].setNo((int) getRandomInt(10000, 99999));
 			emps[i].setState("NM");
 			emps[i].setZipCode((int) getRandomInt(87001, 88439));
 		}
 	}
-	
-	
+
 	// prints out the toString() values of an array of employees
 	/**
 	 * @param emps an array of employee objects to get values of
 	 */
 	public static void getAllEmployees(Employee[] emps) {
 		int cnt = 0;
-		for(int i = 0; i < emps.length; i++) {
-			if(emps[i] == null) {
+		for (int i = 0; i < emps.length; i++) {
+			if (emps[i] == null) {
 				return;
 			}
-			if(!(emps[i] instanceof Employee)) {
+			if (!(emps[i] instanceof Employee)) {
 				return;
 			}
 			System.out.println(emps[i].toString());
 		}
 	}
 
-	
 	// generates a random double (to be cast to an int) between a min and max
 	/**
 	 * @param min the minimum value int
 	 * @param max the maximum value int
 	 */
-	public static double getRandomInt(double min, double max){
-	    double x = (int)(Math.random()*((max-min)+1))+min;
-	    return x;
+	public static double getRandomInt(double min, double max) {
+		double x = (int) (Math.random() * ((max - min) + 1)) + min;
+		return x;
 	}
-	
-	
+
 	// Main function
 	public static void main(String[] args) {
 		Employee Ziad = new Employee();
 		Employee Katie = new Employee();
 		Employee Brianna = new Employee();
-		
+
 		Employee Joseph = null;
-		
-		Employee[] StudyGroup = {Ziad, Katie, Brianna, Joseph};
-		
+
+		Employee[] StudyGroup = { Ziad, Katie, Brianna, Joseph };
+
 		Employee.setAllAdv(StudyGroup);
 		Employee Angel = new Employee(Ziad);
 		Employee.getAllEmployees(StudyGroup);
@@ -297,18 +294,14 @@ public class Employee {
 		Brianna.setName("Brianna");
 		System.out.println(Brianna.toString());
 
-		System.out.println(
-				Arrays.toString(Employee.getAllAdvisors(Ziad, Katie)));
-		System.out.println(
-				Arrays.toString(Employee.getAllAdvisors(null, null)));
-		System.out.println(
-				Arrays.toString(Employee.getAllAdvisors(Ziad, Joseph)));
-		System.out.println(
-				Arrays.toString(Employee.getAllAdvisors(Joseph, Ziad)));
-		
+		System.out.println(Arrays.toString(Employee.getAllAdvisors(Ziad, Katie)));
+		System.out.println(Arrays.toString(Employee.getAllAdvisors(null, null)));
+		System.out.println(Arrays.toString(Employee.getAllAdvisors(Ziad, Joseph)));
+		System.out.println(Arrays.toString(Employee.getAllAdvisors(Joseph, Ziad)));
+
 		System.out.println(Ziad.toString());
 		System.out.println(Angel.toString());
-		Ziad.setAdvisors(new int[] {0,0,0});
+		Ziad.setAdvisors(new int[] { 0, 0, 0 });
 		System.out.println(Angel.toString());
 		System.out.println(Ziad.toString());
 	}
