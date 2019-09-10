@@ -3,7 +3,6 @@
  * I just imported my strToFile function from the fileops package I created
  */
 
-import fileops.fileops;
 import java.io.IOException;
 public class Addition {
 

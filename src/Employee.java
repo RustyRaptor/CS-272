@@ -34,7 +34,8 @@ public class Employee {
 			zipCode = emp.zipCode;
 			no = emp.no;
 			age = emp.age;
-			advisors = emp.advisors;
+			System.arraycopy(emp.advisors, 0, advisors, 0, emp.advisors.length);
+
 
 		}
 	}

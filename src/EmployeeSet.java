@@ -5,12 +5,12 @@ import java.util.Arrays;
  *
  */
 public class EmployeeSet {
-	private int employeeCnt;
-	private Employee[] employeeArr;
+	private int empCnt;
+	private Employee[] empArr;
 
 	public EmployeeSet() {
-		this.employeeCnt = 0;
-		this.employeeArr = new Employee[10];
+		this.empCnt = 0;
+		this.empArr = new Employee[10];
 	}
 
 	public EmployeeSet(Object obj) {
@@ -19,8 +19,9 @@ public class EmployeeSet {
 		}
 		if (obj instanceof EmployeeSet) {
 			EmployeeSet emps = (EmployeeSet) obj;
-			employeeCnt = emps.employeeCnt;
-			employeeArr = emps.employeeArr;
+			empCnt = emps.empCnt;
+			this.empArr = new Employee[10];
+            System.arraycopy(emps.empArr, 0, empArr, 0, emps.empCnt);
 
 		}
 	}
@@ -34,38 +35,37 @@ public class EmployeeSet {
 		if (!(obj instanceof EmployeeSet))
 			return false;
 		EmployeeSet other = (EmployeeSet) obj;
-		if (!Arrays.equals(employeeArr, other.employeeArr))
+		if (!Arrays.equals(empArr, other.empArr))
 			return false;
-		if (employeeCnt != other.employeeCnt)
-			return false;
-		return true;
-	}
+        return empCnt == other.empCnt;
+    }
 
 	public int size() {
 		int size = 0;
-		for (int i = 0; i < this.employeeArr.length; i++) {
-			if (this.employeeArr[i] != null) {
-				size++;
-			}
-		}
+        for (Employee employee : empArr) {
+            if (employee != null) {
+                size++;
+            }
+        }
 
 		return size;
 	}
 
 	public int capacity() {
-		return this.employeeArr.length;
+		return empArr.length;
 	}
 
 	public void add(Employee a) {
-		this.employeeArr[this.employeeCnt] = a;
+		this.empArr[empCnt] = a;
+		this.empCnt++;
 	}
 
 	public boolean contains(Employee a) {
 		if (a == null) {
 			return false;
 		}
-		for (int i = 0; i <= this.employeeCnt; i++) {
-			if (this.employeeArr[i].equals(a)) {
+		for (int i = 0; i <= empCnt; i++) {
+			if (empArr[i].equals(a)) {
 				return true;
 			}
 		}
@@ -76,44 +76,56 @@ public class EmployeeSet {
 		if (eno == 0) {
 			return false;
 		}
-		for (int i = 0; i <= this.employeeCnt; i++) {
-			if (this.employeeArr[i].getNo() == eno) {
+		for (int i = 0; i <= empCnt; i++) {
+			if (empArr[i].getNo() == eno) {
+			    empArr[i] = empArr[empCnt];
+			    empCnt--;
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	private void ensureCapacity(int minimumCapacity) {
-		
+	private void ensureCapacity() {
+		if (empArr.length+1 >= capacity()) {
+			Employee[] biggerArr = new Employee[capacity()*2];
+			System.arraycopy(empArr, 0, biggerArr,0, empCnt);
+			empArr = biggerArr;
+		}
 	}
 
 	@Override
 	public String toString() {
-		return "EmployeeSet [employeeCnt=" + employeeCnt + ", employeeArr=" + Arrays.toString(employeeArr) + "]";
+		return "EmployeeSet [empCnt=" + empCnt + ", empArr=" + Arrays.toString(empArr) + "]";
 	}
 
 	public int getEmployeeCnt() {
-		return employeeCnt;
+		return empCnt;
 	}
 
-	public void setEmployeeCnt(int employeeCnt) {
-		this.employeeCnt = employeeCnt;
+	public void setEmployeeCnt(int empCnt) {
+		this.empCnt = empCnt;
 	}
 
 	public Employee[] getEmployeeArr() {
-		return employeeArr;
+		return empArr;
 	}
 
-	public void setEmployeeArr(Employee[] employeeArr) {
-		this.employeeArr = employeeArr;
+	public void setEmployeeArr(Employee[] empArr) {
+		this.empArr = empArr;
 	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		Employee John = new Employee();
+        Employee Ziad = new Employee();
+        Employee Katie = new Employee();
+        Employee Brianna = new Employee();
+
+        Employee Joseph = new Employee();
+
+        Employee[] StudyGroup = { Ziad, Katie, Brianna, Joseph, John };
+
+        Employee.setAllAdv();
 
 	}
 
