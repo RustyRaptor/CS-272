@@ -1,13 +1,4 @@
 import java.io.IOException;
-
-/*
- * Ziad Arafat
- * I just imported my strToFile function from the fileops package I created
- */
-
-import fileops.fileops;
-
-
 public class Welcome {
 	/**
 	 * @param args
