@@ -101,10 +101,30 @@ public class IntNode {
 		if (head == null) {
 			return 0;
 		}
-		int cnt = 0;
+		int cnt = 1;
 		for (IntNode cursor = head.getLink(); cursor != null; cursor
 		    = cursor.getLink()){
 			cnt++;
+		}
+		return cnt;
+
+	}
+
+	/**
+	 * returns number of even numbers in the list starting from "head" node
+	 * @param head the node to start from.\
+	 * @return integer
+	 */
+	public static int listEvenNumber(IntNode head) {
+		if (head == null) {
+			return 0;
+		}
+		int cnt = 1;
+		for (IntNode cursor = head.getLink(); cursor != null; cursor
+		    = cursor.getLink()){
+			if (cursor.data%2 == 0) {
+				cnt++;
+			}
 		}
 		return cnt;
 
