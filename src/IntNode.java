@@ -158,7 +158,6 @@ public class IntNode {
 		IntNode cursor;
 		for (cursor = this; cursor.getLink() != null; cursor
 		    = cursor.getLink()){
-			continue;
 		}
 		cursor.addNodeAfterThis(newData);
 	}
