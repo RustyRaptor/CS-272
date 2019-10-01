@@ -9,13 +9,52 @@ public class IntNodeAdvancedTest {
 	 * This main function just runs all the test functions.
 	 */
 	public static void main(String[] args) {
-		IntNodeAdvancedTest.testAddNodeAfterThis();
-		IntNodeAdvancedTest.testAddRangeAfterThis();
-		IntNodeAdvancedTest.testPrintData();
-		IntNodeAdvancedTest.testRemoveNodeAfterThis();
-		IntNodeAdvancedTest.testTestToString();
-		IntNodeAdvancedTest.testSearch();
-		IntNodeAdvancedTest.testAll();
+		System.out.println("Testing add node");
+		testAddNodeAfterThis();
+		testAddRangeAfterThis();
+		testPrintData();
+		testRemoveNodeAfterThis();
+		testTestToString();
+		testSearch();
+		testListEvenNumber();
+		testListLength();
+		System.out.println("Testing Sum Last");
+		testSumLast();
+		System.out.println("Testing Copy ODD");
+		testCopyOdd();
+		System.out.println("Testing All");
+		testAll();
+	}
+
+	private static void testCopyOdd() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.copyOdd(myNode));
+		myNode.addRangeAfterThis(0, 10);
+		System.out.println(IntNode.copyOdd(myNode));
+
+	}
+
+	private static void testSumLast() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.sumLast(myNode, 2));
+		myNode.addRangeToEnd(0, 100);
+		System.out.println(myNode);
+		System.out.println(IntNode.sumLast(myNode, 100));
+		System.out.println(IntNode.sumLast(myNode, 1));
+		for (int i = 0; i < 100; i++){
+			System.out.print(IntNode.sumLast(myNode, i) + " ");
+		}
+	}
+
+
+	private static void testListLength() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.listLength(myNode));
+		myNode.addRangeAfterThis(0, 100);
+		System.out.println(IntNode.listLength(myNode));
+		myNode.addRangeAfterThis(1000, 2000);
+		System.out.println(IntNode.listLength(myNode));
+
 	}
 
 
@@ -23,19 +62,20 @@ public class IntNodeAdvancedTest {
 		IntNode myNode = new IntNode();
 		myNode.addRangeAfterThis(0, 100);
 		myNode.getLink().getLink().getLink().getLink()
-		    .addRangeAfterThis(100,200);
+		    .addRangeAfterThis(100, 200);
 		myNode.addRangeAfterThis(0, 100);
 		myNode.addRangeAfterThis(1000, 1100);
 		myNode.getLink().getLink().addRangeAfterThis(1000, 1100);
 
 	}
+
 	private static void testListEvenNumber() {
 		IntNode myNode = new IntNode();
 		System.out.println(IntNode.listEvenNumber(myNode));
 		myNode.addRangeAfterThis(0, 100);
 		System.out.println(IntNode.listEvenNumber(myNode));
 		myNode.getLink().getLink().getLink().getLink()
-		    .addRangeAfterThis(100,200);
+		    .addRangeAfterThis(100, 200);
 		System.out.println(IntNode.listEvenNumber(myNode));
 		myNode.addRangeAfterThis(0, 100);
 		System.out.println(IntNode.listEvenNumber(myNode));
@@ -131,12 +171,24 @@ public class IntNodeAdvancedTest {
 		IntNodeAdvancedTest.testPrintData();
 		IntNodeAdvancedTest.testRemoveNodeAfterThis();
 		IntNodeAdvancedTest.testTestToString();
+		System.out.println(IntNode.listEvenNumber(myNode));
+		myNode.addRangeAfterThis(0, 100);
+		System.out.println(IntNode.listEvenNumber(myNode));
+		myNode.getLink().getLink().getLink().getLink()
+		    .addRangeAfterThis(100, 200);
+		System.out.println(IntNode.listEvenNumber(myNode));
+		myNode.addRangeAfterThis(0, 100);
+		System.out.println(IntNode.listEvenNumber(myNode));
+		myNode.addRangeAfterThis(1000, 1100);
+		System.out.println(IntNode.listEvenNumber(myNode));
+		myNode.getLink().getLink().addRangeAfterThis(1000, 1100);
+		System.out.println(IntNode.listEvenNumber(myNode));
 	}
 
 	private static void testSearch() {
 		IntNode myNode = new IntNode();
 		IntNode bools = new IntNode();
-		for (int i = 0; i < 100000; i++){
+		for (int i = 0; i < 100000; i++) {
 			IntNode.search(myNode, i);
 
 		}
@@ -147,20 +199,20 @@ public class IntNodeAdvancedTest {
 		myNode.addNodeAfterThis(-1000);
 		myNode.addNodeAfterThis(-2000);
 		myNode.addNodeAfterThis(0);
-		for (int i = 0; i < 100000; i++){
+		for (int i = 0; i < 100000; i++) {
 			IntNode.search(myNode, i);
 
 		}
 		myNode.addRangeAfterThis(0, 100);
 		myNode.getLink().getLink().getLink().getLink()
-		    .addRangeAfterThis(100,200);
+		    .addRangeAfterThis(100, 200);
 		myNode.addRangeAfterThis(0, 100);
 		myNode.addRangeAfterThis(1000, 1100);
 		myNode.getLink().getLink().addRangeAfterThis(1000, 1100);
-		for (int i = 0; i < 100000; i++){
+		for (int i = 0; i < 100000; i++) {
 			if (IntNode.search(myNode, i)) {
 				bools.addNodeAfterThis(1);
-			} else{
+			} else {
 				bools.addNodeAfterThis(0);
 			}
 
