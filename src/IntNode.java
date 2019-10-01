@@ -212,15 +212,30 @@ public class IntNode {
 		copyHead = new IntNode(source.getData(), null);
 		copyTail = copyHead;
 
-		while (source.getLink() != null && ) {
+		while (source.getLink() != null) {
 			source = source.getLink();
-			if (source.getData() % 2 == 0) {
+			if (source.getData() % 2 != 0) {
 				copyTail.addNodeAfterThis(source.getData());
+				copyTail = copyTail.getLink();
 			}
-			copyTail = copyTail.getLink();
+		}
+		return copyHead;
+	}
+
+	public static IntNode removeAll(IntNode head, int e) {
+		if(head == null) return null;
+		IntNode newHead = head;
+		while (newHead.getData() != e) {
+			newHead = newHead.getLink();
 		}
 
-		return copyHead;
+		for (IntNode cursor = newHead; cursor.getLink() != null; cursor
+		    = cursor.getLink()){
+			if (cursor.getLink().getData() == e){
+				cursor.removeNodeAfterThis();
+			}
+		}
+		return newHead;
 	}
 
 	/**

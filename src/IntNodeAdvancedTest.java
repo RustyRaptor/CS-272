@@ -20,10 +20,21 @@ public class IntNodeAdvancedTest {
 		testListLength();
 		System.out.println("Testing Sum Last");
 		testSumLast();
+		System.out.println();
 		System.out.println("Testing Copy ODD");
 		testCopyOdd();
+		System.out.println("TESTING REMOVE ALL");
+		testRemoveAll();
 		System.out.println("Testing All");
 		testAll();
+	}
+
+	private static void testRemoveAll() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.removeAll(myNode, 5));
+		myNode.addRangeAfterThis(0, 100);
+		System.out.println(IntNode.removeAll(myNode, 5));
+
 	}
 
 	private static void testCopyOdd() {
