@@ -11,12 +11,19 @@ public class IntNodeAdvancedTest {
 	public static void main(String[] args) {
 		System.out.println("Testing add node");
 		testAddNodeAfterThis();
+		System.out.println("Testing Add Range After This");
 		testAddRangeAfterThis();
+		System.out.println("Testing Testing Print");
 		testPrintData();
+		System.out.println("Testing Remove after this");
 		testRemoveNodeAfterThis();
+		System.out.println("Testing toString");
 		testTestToString();
+		System.out.println("Testing Search");
 		testSearch();
+		System.out.println("Testing list even number");
 		testListEvenNumber();
+		System.out.println("Testing List Length");
 		testListLength();
 		System.out.println("Testing Sum Last");
 		testSumLast();
@@ -25,6 +32,10 @@ public class IntNodeAdvancedTest {
 		testCopyOdd();
 		System.out.println("TESTING REMOVE ALL");
 		testRemoveAll();
+		System.out.println("TESTING REVERSE ");
+		testReverse();
+		System.out.println("TEST HAS CYCLE");
+		testHasCycle();
 		System.out.println("Testing All");
 		testAll();
 	}
@@ -34,6 +45,23 @@ public class IntNodeAdvancedTest {
 		System.out.println(IntNode.removeAll(myNode, 5));
 		myNode.addRangeAfterThis(0, 100);
 		System.out.println(IntNode.removeAll(myNode, 5));
+
+	}
+
+	private static void testHasCycle() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.hasCycle(myNode));
+		myNode.addRangeAfterThis(0, 10);
+//		myNode.getLink().getLink().getLink().getLink().getLink().getLink().getLink().getLink().getLink().getLink().setLink(myNode);
+		System.out.println(IntNode.hasCycle(myNode));
+	}
+
+	private static void testReverse() {
+		IntNode myNode = new IntNode();
+		System.out.println(IntNode.reverse(myNode));
+		myNode.addRangeAfterThis(0, 10);
+		System.out.println(IntNode.reverse(myNode));
+		System.out.println(IntNode.reverse(IntNode.reverse(myNode)));
 
 	}
 

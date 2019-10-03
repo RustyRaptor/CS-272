@@ -158,11 +158,16 @@ public class IntNode {
 		IntNode cursor;
 		for (cursor = this; cursor.getLink() != null; cursor
 		    = cursor.getLink()){
-			continue;
 		}
 		cursor.addNodeAfterThis(newData);
 	}
 
+	/**
+	 * returns the sum of the last N items in the linked list
+	 * @param head the head
+	 * @param num the number of items from the end we want to sum up
+	 * @return and integer of the sum.
+	 */
 	public static int sumLast(IntNode head, int num) {
 		int sum = 0;
 		int numLast = IntNode.listLength(head) - num;
@@ -222,22 +227,64 @@ public class IntNode {
 		return copyHead;
 	}
 
+	/**
+	 * remove all of the items equal to e
+	 * @param head the head of the Intnode we want to remove from
+	 * @param e the integer we wanna remove
+	 * @return a new linked list with the items removed.
+	 */
 	public static IntNode removeAll(IntNode head, int e) {
 		if(head == null) return null;
-		IntNode newHead = head;
-		while (newHead.getData() != e) {
-			newHead = newHead.getLink();
-		}
-
-		for (IntNode cursor = newHead; cursor.getLink() != null; cursor
-		    = cursor.getLink()){
+		IntNode start = new IntNode(0, head);
+		IntNode cursor = start;
+		while ( cursor.getLink() != null){
 			if (cursor.getLink().getData() == e){
 				cursor.removeNodeAfterThis();
+			} else {
+				cursor = cursor.getLink();
 			}
 		}
-		return newHead;
+		return start.getLink();
 	}
 
+	/**
+	 * returns the given linked list in reverse order
+	 * @param head the head of the list we want to reverse
+	 * @return a reversed IntNode
+	 */
+	public static IntNode reverse (IntNode head) {
+		IntNode cursor = head;
+		IntNode newHead = new IntNode(0, null);
+		int[] a = new int[IntNode.listLength(head)];
+		for (int i = 0; i < a.length; i++) {
+			a[i] = cursor.getData();
+			cursor = cursor.getLink();
+		}
+		for (int i = a.length-1; i >= 0; i--) {
+			newHead.addToEnd(a[i]);
+		}
+
+		return newHead.getLink();
+
+	}
+
+	/**
+	 * Checks heuristically if the Linked list goes into a loop
+	 * @param head the head of the node we are checking
+	 * @return true or false
+	 */
+	public static boolean hasCycle(IntNode head){
+		if (head == null) return false;
+		IntNode cursor = head;
+		while (cursor.link != null) {
+			if (cursor.link.data == head.data) {
+				return true;
+			} else {
+				cursor = cursor.link;
+			}
+		}
+		return false;
+	}
 	/**
 	 * Builds a string from all the nodes in the list.
 	 *
@@ -262,7 +309,9 @@ public class IntNode {
 		return "IntNode{" +
 		    "data=" + linkStr +
 		    '}';
+
 	}
+
 
 	/**
 	 * prints out the toString value of the Node.
