@@ -2,12 +2,22 @@ public class DoublyLinkedListDummy {
 	private DIntNode head;
 	private DIntNode tail;
 
+	/**
+	 * this is used to keep track of the status of the list's emptiness.
+	 */
+	private boolean empty;
 
+	/**
+	 * No-arg constructor
+	 * sets the head's next to tail and the tail's prev to head
+	 * Initializes empty as true.
+	 */
 	public DoublyLinkedListDummy() {
-		head = new DIntNode();
-		tail = new DIntNode();
-		head.setNext(tail);
-		tail.setPrev(head);
+		this.head = new DIntNode();
+		this.tail = new DIntNode();
+		this.head.setNext(tail);
+		this.tail.setPrev(head);
+		this.empty = true;
 	}
 
 	/**
@@ -15,49 +25,77 @@ public class DoublyLinkedListDummy {
 	 *
 	 * @param element The data to add.
 	 *                <p>
-	 *                Time Complexity: O(1)
+	 *                Time Complexity(worst): O(1)
 	 */
 	public void addEnd(int element) {
-		DIntNode newNode = new DIntNode(element, null, null);
-		newNode.setPrev(this.getTail());
-		newNode.setNext(null);
-		this.getTail().setNext(newNode);
-		this.setTail(newNode);
+		// new node with element and the previous is the last item
+		// the next is the tail
+		DIntNode newNode = new DIntNode(element, getTail().getPrev(),
+		    getTail());
+
+		// set the tail's prev's next to the newNode
+		getTail().getPrev().setNext(newNode);
+
+		// set the tail's prev to the newnode
+		getTail().setPrev(newNode);
+
+		setNotEmpty();
 	}
 
 	/**
 	 * Removes the first node in this list. (The head)
-	 * Time Complexity: 0(1)
+	 * Time Complexity(worst): 0(1)
 	 */
 	public void removeFromHead() {
-		if (head.getNext() == null) {
+
+		// if it's empty return
+		if (checkEmpty()) {
 			return;
 		}
-		if (tail.getPrev() == null) {
-			return;
-		}
-		this.setHead(this.getHead().getNext());
-		this.getHead().setPrev(null);
+
+		// set the head's next to it's link's link.
+		getHead().setNext(getHead().getNext().getNext());
+
+		// set the head's next's prev to the head.
+		getHead().getNext().setPrev(getHead());
+
+		// check if empty now
+		checkEmpty();
 	}
 
-
+	/**
+	 * to string which accounts for empty lists.
+	 *
+	 * @return a string of the list.
+	 * Time Complexity(worst): O(n) where n is the size of the list we
+	 * are converting to a string.
+	 */
 	@Override
 	public String toString() {
+		if (checkEmpty()) {
+			return "EMPTY LIST";
+		}
 		StringBuilder forward = new StringBuilder("");
 		StringBuilder backward = new StringBuilder("");
-		for (DIntNode cursor = this.getHead(); cursor != null; cursor
+		for (DIntNode cursor = getHead().getNext(); cursor != getTail(); cursor
 		    = cursor.getNext()) {
 			forward.append(cursor.getData());
-			forward.append("<->");
+			if (cursor.getNext() != getTail()) {
+				forward.append("<->");
+			}
 		}
-		for (DIntNode cursor = this.getTail(); cursor != null; cursor
+
+
+		for (DIntNode cursor = getTail().getPrev(); cursor != getHead(); cursor
 		    = cursor.getPrev()) {
 			backward.append(cursor.getData());
-			backward.append("<->");
+			if (cursor.getPrev() != getHead()) {
+				backward.append("<->");
+			}
 		}
-		return "DoublyLinkedListDummy: " +
-		    "(forward)" + forward.toString() +
-		    ",(backward)" + backward.toString();
+		return "DoublyLinkedListDummy: " + "{" + "\n" +
+		    "(forward) " + forward.toString() + "\n" +
+		    "(backward)" + backward.toString() + "\n" + "}";
 	}
 
 	/**
@@ -70,12 +108,15 @@ public class DoublyLinkedListDummy {
 	 * base the time complexity on is the size of the list in the object
 	 * it's being called from.
 	 * <p>
-	 * Time Complexity: O(n)
+	 * Time Complexity(worst): O(n) where n is the size of the list.
 	 */
 	public int countOccurrence(int e) {
+		if (checkEmpty()) {
+			return 0;
+		}
 		int count = 0;
-		DIntNode cursor = this.head;
-		while (cursor != null) {
+		DIntNode cursor = getHead().getNext();
+		while (cursor != getTail()) {
 			if (cursor.getData() == e) {
 				count++;
 			}
@@ -89,13 +130,16 @@ public class DoublyLinkedListDummy {
 	 *
 	 * @param e an integer to remove from the list.
 	 * @return true or false if one was found and removed.
-	 * Time Complexity: O(n) where n is the size of the array we are
+	 * Time Complexity(worst): O(n) where n is the size of the list we are
 	 * searching in.
 	 */
 	public boolean removeAll(int e) {
-		DIntNode cursor = this.head;
+		if (checkEmpty()) {
+			return false;
+		}
+		DIntNode cursor = getHead().getNext();
 		boolean result = false;
-		while (cursor.getNext() != null) {
+		while (cursor.getNext() != getTail()) {
 			if (cursor.getData() == e) {
 				cursor.getPrev().setNext(cursor.getNext());
 				cursor.getNext().setPrev(cursor.getPrev());
@@ -103,7 +147,9 @@ public class DoublyLinkedListDummy {
 			}
 			cursor = cursor.getNext();
 		}
+		checkEmpty();
 		return result;
+
 	}
 
 	/**
@@ -111,18 +157,25 @@ public class DoublyLinkedListDummy {
 	 *
 	 * @param beginIdx The starting index of the sublist
 	 * @param endIdx   The ending index of the sublist
-	 * @return a new List being a sublist of this list.
-	 * <p>
-	 * Time Complexity: O(n) where n is the number of elements from the
+	 * @return a new List being a sublist of this list
+	 * Time Complexity(worst): O(n) where n is the number of elements in
+	 * the list.
 	 * start of the host list to endIdx
 	 */
 	public DoublyLinkedListDummy subList(int beginIdx, int endIdx) {
+		if (checkEmpty()) {
+			return this;
+		}
+		if (beginIdx <= 0 && endIdx >= listLength()) {
+			return this;
+		}
+		if (beginIdx < 0) {
+			beginIdx = 0;
+		}
 		DoublyLinkedListDummy newList = new DoublyLinkedListDummy();
-		DIntNode cursor = this.head;
-		for (int i = 0; i <= endIdx; i++) {
-			if (i == beginIdx) {
-				newList.setHead(cursor);
-			} else if (i > beginIdx) {
+		DIntNode cursor = getHead().getNext();
+		for (int i = 0; i < endIdx && cursor != getTail(); i++) {
+			if (i >= beginIdx) {
 				newList.addEnd(cursor.getData());
 			}
 			cursor = cursor.getNext();
@@ -130,12 +183,19 @@ public class DoublyLinkedListDummy {
 		return newList;
 	}
 
+	/**
+	 * Gets the size of the list
+	 *
+	 * @return integer of the size
+	 * Time Complexity(worst): O(n) where n is the size of the list we
+	 * are checking the size of.
+	 */
 	public int listLength() {
-		if (this.head == null || this.head.getNext() == this.tail) {
-			return 2;
+		if (checkEmpty()) {
+			return 0;
 		}
 		int cnt = 2;
-		for (DIntNode cursor = this.head; cursor != null; cursor
+		for (DIntNode cursor = getHead().getNext(); cursor != getTail(); cursor
 		    = cursor.getNext()) {
 			cnt++;
 		}
@@ -143,23 +203,34 @@ public class DoublyLinkedListDummy {
 	}
 
 
+	/**
+	 * prints a list of all distinct items in the list and their count
+	 * Time Complexity(worst): O(n) where n is the size of the list we
+	 * are printing.
+	 */
 	public void printStatistics() {
-		int size = this.listLength();
-		DoublyLinkedListDummy nums = new DoublyLinkedListDummy();
-
-		for (DIntNode cursor = this.head; cursor != null; cursor
+		if (checkEmpty()) {
+			System.out.println("EMPTY LIST");
+			return;
+		}
+		DoublyLinkedListDummy items =
+		    new DoublyLinkedListDummy();
+		for (DIntNode cursor = this.getHead().getNext(); cursor != getTail(); cursor
 		    = cursor.getNext()) {
-			if (nums.countOccurrence(cursor.getData())<1) {
-				nums.addEnd(cursor.getData());
+			if (items.countOccurrence(cursor.getData()) == 0) {
+				items.addEnd(cursor.getData());
 			}
 		}
-		System.out.println("number occurrence");
-		for (DIntNode cursor = nums.getTail(); cursor.getPrev() != null; cursor
-		    = cursor.getPrev()) {
-			System.out.println( cursor.getData() + " " + this.countOccurrence(cursor.getData()));
+		System.out.println("Number | Occurrences");
+		for (DIntNode cursor = items.getHead().getNext(); cursor != items.getTail(); cursor
+		    = cursor.getNext()) {
+			System.out.print(cursor.getData() + "\t \t");
+			System.out.print(this.countOccurrence(cursor.getData()) + "\n");
+
 		}
 	}
 
+	// getters and setters.
 	public DIntNode getHead() {
 		return head;
 	}
@@ -174,5 +245,33 @@ public class DoublyLinkedListDummy {
 
 	public void setTail(DIntNode tail) {
 		this.tail = tail;
+	}
+
+	/**
+	 * set the list to empty
+	 */
+	public void setEmpty() {
+		this.empty = true;
+	}
+
+	/**
+	 * set the list to NOT empty
+	 */
+	public void setNotEmpty() {
+		this.empty = false;
+	}
+
+	/**
+	 * this checks if the list is empty and sets the status accordingly.
+	 *
+	 * @return a boolean. True if it's empty False if it's not empty.
+	 */
+	public boolean checkEmpty() {
+		if (getHead().getNext() == getTail() && getTail().getPrev() == getHead()) {
+			setEmpty();
+			return true;
+		}
+		setNotEmpty();
+		return false;
 	}
 }

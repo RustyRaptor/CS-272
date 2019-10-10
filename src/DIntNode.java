@@ -61,18 +61,18 @@ public class DIntNode
     public String toString()
     {
     	String str="";
-    	
+
     	//include previous node's information
     	if(prev==null) str+="(null)";
     	else str += "("+prev.data+")";
-    	
+
     	//include the current data
     	str += data;
-    	
+
     	//include the next node's information
     	if(next==null) str+="(null)";
     	else str += "("+next.data+")";
-    	
+
     	return str;
     }
       
