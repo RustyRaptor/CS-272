@@ -1,27 +1,41 @@
 public class ArrayQueue <E> implements QueueInterface {
+	private E[] data;
+	private int front, rear;
+	private int size;
+
+
+	public ArrayQueue() {
+		this.data = (E[]) new Object[10];
+		this.front = 0;
+		this.rear = 0;
+		this.size = 0;
+	}
 
 	@Override
 	public void enqueue(Object o) {
-
+		data[rear] = (E) o;
+		rear++;
+		size++;
 	}
 
 	@Override
-	public Object dequeue() {
-		return null;
+	public E dequeue() {
+		size--;
+		return data[front++];
 	}
 
 	@Override
-	public Object front() {
-		return null;
+	public E front() {
+		return data[front];
 	}
 
 	@Override
 	public int size() {
-		return 0;
+		return size;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return false;
+		return size == 0;
 	}
 }

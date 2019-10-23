@@ -1,7 +1,7 @@
 public interface QueueInterface <E> {
-	public void enqueue(E e);
-	public E dequeue();
-	public E front();
-	public int size();
-	public boolean isEmpty();
+	void enqueue(E e);
+	E dequeue();
+	E front();
+	int size();
+	boolean isEmpty();
 }
