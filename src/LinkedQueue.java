@@ -1,30 +1,48 @@
+import java.util.EmptyStackException;
+
 public class LinkedQueue <E> implements QueueInterface {
 	private SNode<E> front;
 	private SNode<E> rear;
 	private int size;
 
 	public LinkedQueue() {
-		this.front = new SNode<E>();
-		this.rear = new SNode<E>();
+		this.front = new SNode<E>((E) new Object(), null);
+		this.rear = front;
 		this.size = 0;
 	}
 
 	@Override
 	public void enqueue(Object o) {
-		getRear().setLink(new SNode<E>((E)o, null));
+		rear.setLink(new SNode<E>((E) o, null));
+		rear = rear.getLink();
+		size++;
 	}
 
 	@Override
 	public E dequeue() {
+		if (size <= 0) {
+			throw new EmptyStackException();
+		}
+		if (size == 1){
+			E tempdata = front();
+			this.front = new SNode<E>((E) new Object(), null);
+			this.rear = front;
+			this.size = 0;
+			return tempdata;
+		}
 		E tempdata = front();
-		setFront(getFront().getLink());
+		front.setLink(front.getLink().getLink());
+		size--;
 		return tempdata;
 	}
 
 
 	@Override
 	public E front() {
-		return front.getData();
+		if (size <= 0) {
+			throw new EmptyStackException();
+		}
+		return front.getLink().getData();
 	}
 
 	@Override
@@ -46,6 +64,15 @@ public class LinkedQueue <E> implements QueueInterface {
 
 	public SNode<E> getRear() {
 		return rear;
+	}
+
+	@Override
+	public String toString() {
+		return "LinkedQueue{" +
+		    "front=" + front +
+		    ", rear=" + rear +
+		    ", size=" + size +
+		    '}';
 	}
 
 	public void setRear(SNode<E> rear) {
