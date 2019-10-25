@@ -112,7 +112,11 @@ public class QueueTest {
 
 	static void testArrDequeue(){
 		ArrayQueue<Integer> test = new ArrayQueue<Integer>();
-		test.dequeue();
+		try {
+			test.dequeue();
+		} catch (Exception e) {
+			System.out.println("EXCEPTION FOR ARRAY WORKS");
+		}
 		test.isEmpty();
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
@@ -120,8 +124,12 @@ public class QueueTest {
 		}
 		test.dequeue();
 		test.dequeue();
-		for (int i = 0; i < 10; i++) {
-			test.dequeue();
+		try {
+			for (int i = 0; i < 10; i++) {
+				test.dequeue();
+			}
+		} catch (Exception e) {
+			System.out.println("EXCEPTION WORKS");
 		}
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
@@ -132,8 +140,14 @@ public class QueueTest {
 	}
 	static void testArrFront(){
 		ArrayQueue<Integer> test = new ArrayQueue<Integer>();
-		test.front();
-		System.out.println(test.front());
+
+		try {
+			test.front();
+			System.out.println(test.front());
+		} catch (Exception e) {
+			System.out.println("EXCEPTION WORKS");
+		}
+
 		test.enqueue(0);
 		System.out.println(test.front());
 		for (int i = 0; i < 10; i++) {

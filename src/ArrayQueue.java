@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.EmptyStackException;
+
 public class ArrayQueue <E> implements QueueInterface {
 	private E[] data;
 	private int front, rear;
@@ -13,6 +16,7 @@ public class ArrayQueue <E> implements QueueInterface {
 
 	@Override
 	public void enqueue(Object o) {
+		ensureCapacity();
 		data[rear] = (E) o;
 		rear++;
 		size++;
@@ -20,12 +24,47 @@ public class ArrayQueue <E> implements QueueInterface {
 
 	@Override
 	public E dequeue() {
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
+
 		size--;
-		return data[front++];
+		if (!isEmpty()) {
+			return data[front++];
+		}
+		return data[0];
+
+	}
+
+
+
+	public void ensureCapacity() {
+		if (front > 0 && rear >= data.length-1) {
+			rear = 0;
+		}
+		if (rear < 0) {
+			rear = data.length - 1;
+		}
+		if (front == 0 && rear >= data.length - 1) {
+			E[] bigarr = (E[]) new Object[data.length*2];
+			System.arraycopy(getData(), 0, bigarr, 0, data.length);
+			data = bigarr;
+		}
+		if (rear == front && size >= data.length) {
+			E[] bigarr = (E[]) new Object[data.length*2];
+			System.arraycopy(data, front, bigarr, 0,
+			    data.length - front);
+			System.arraycopy(data, 0, bigarr,
+			    data.length - front,
+			    data.length - (data.length - front));
+		}
 	}
 
 	@Override
 	public E front() {
+		if (isEmpty()) {
+			throw new EmptyStackException();
+		}
 		return data[front];
 	}
 
@@ -35,7 +74,48 @@ public class ArrayQueue <E> implements QueueInterface {
 	}
 
 	@Override
+	public String toString() {
+		return "ArrayQueue{" +
+		    "data=" + Arrays.toString(data) +
+		    ", front=" + front +
+		    ", rear=" + rear +
+		    ", size=" + size +
+		    '}';
+	}
+
+	@Override
 	public boolean isEmpty() {
 		return size == 0;
+	}
+	public E[] getData() {
+		return data;
+	}
+
+	public void setData(E[] data) {
+		this.data = data;
+	}
+
+	public int getFront() {
+		return front;
+	}
+
+	public void setFront(int front) {
+		this.front = front;
+	}
+
+	public int getRear() {
+		return rear;
+	}
+
+	public void setRear(int rear) {
+		this.rear = rear;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
 	}
 }
