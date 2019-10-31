@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Palindrome {
 	public static void main(String[] args) {
-		LinkedQueue<String> wordq = new LinkedQueue();
-		LinkedQueue<String> wordj = new LinkedQueue();
+		LinkedQueue<String> wordq = new LinkedQueue<String>();
+		LinkedQueue<String> wordj = new LinkedQueue<String>();
 
 		Scanner inp = new Scanner(System.in);
 
@@ -13,13 +13,13 @@ public class Palindrome {
 		nn = nn.toLowerCase();
 		String[] punct = {"!", ".", "?",","};
 		System.out.println(nn);
-		for (int i = 0; i < punct.length; i++) {
-			nn = nn.replace(punct[i], "");
+		for (String s : punct) {
+			nn = nn.replace(s, "");
 		}
 		String[] nn2 = nn.split(" ");
 		System.out.println(Arrays.toString(nn2));
-		for (int i = 0; i < nn2.length; i++) {
-			wordq.enqueue(nn2[i]);
+		for (String s : nn2) {
+			wordq.enqueue(s);
 		}
 		System.out.println(wordq);
 		for (int i = nn2.length-1; i >= 0; i--) {

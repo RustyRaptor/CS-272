@@ -57,6 +57,7 @@ public class ArrayQueue <E> implements QueueInterface {
 			System.arraycopy(data, 0, bigarr,
 			    data.length - front,
 			    data.length - (data.length - front));
+			data = bigarr;
 		}
 	}
 
@@ -75,8 +76,10 @@ public class ArrayQueue <E> implements QueueInterface {
 
 	@Override
 	public String toString() {
+		E[] newarr = (E[]) new Object[data.length];
+		System.arraycopy(data, 0, newarr, 0, size);
 		return "ArrayQueue{" +
-		    "data=" + Arrays.toString(data) +
+		    "data=" + Arrays.toString(newarr) +
 		    ", front=" + front +
 		    ", rear=" + rear +
 		    ", size=" + size +

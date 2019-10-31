@@ -12,7 +12,7 @@ public class QueueTest {
 		System.out.println("=====LinkedList Queue TESTS " +
 		    "COMPLETE!!!=====");
 		System.out.println("=====TESTING Array Queue=====");
-		announceTest("ARR Dequeue");
+		announceTest("ARR Enqueue");
 		testArrEnqueue();
 		announceTest("ARR Dequeue");
 		testArrDequeue();
@@ -41,6 +41,10 @@ public class QueueTest {
 		test.enqueue(1);
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
+			test.enqueue(i);
+		}
+		System.out.println(test);
+		for (int i = 0; i < 100; i++) {
 			test.enqueue(i);
 		}
 		System.out.println(test);
@@ -105,6 +109,19 @@ public class QueueTest {
 		test.enqueue(1);
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
+			test.enqueue(i);
+		}
+		System.out.println(test);
+		System.out.println("TESTING CHECK CAPACITY");
+		for (int i = 0; i < 10; i++) {
+			test.enqueue(i);
+		}
+		System.out.println(test);
+		for (int i = 0; i < 10; i++) {
+			test.dequeue();
+		}
+		System.out.println(test);
+		for (int i = 0; i < 100; i++) {
 			test.enqueue(i);
 		}
 		System.out.println(test);
