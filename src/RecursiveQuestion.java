@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class RecursiveQuestion {
 	public static void main(String[] args) {
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 201; i++) {
 			System.out.print(FibBinaryRecursive(i));
 			System.out.print(", ");
 		}
@@ -88,6 +88,28 @@ public class RecursiveQuestion {
 		}
 		else {
 			return (n % 2 + 10 * (BinaryPrint(n / 2)));
+		}
+	}
+
+	public static String pattern(String outs, int n, int i)
+	{
+		int na = (int)(Math.log(n)/Math.log(2));
+		if (na == 0)
+		{
+			StringBuilder outsBuilder = new StringBuilder(outs);
+			for (int k = 0; k < i; k++) outsBuilder.append(' ');
+			for (int k = 0; k < n; k++) outsBuilder.append("* ");
+			outs = outsBuilder.toString();
+			return outs+= '\n';
+		}
+		else
+		{
+			outs = pattern(outs,(int)(Math.pow(2.0,na - 1)),i);
+			for (int k = 0; k < i; k++) outs += ' ';
+			for (int k = 0; k < n; k++) outs += "* ";
+			outs+= '\n';
+			i+= na * 2;
+			return outs = pattern(outs,(int)(Math.pow(2.0,na - 1)),i);
 		}
 	}
 
