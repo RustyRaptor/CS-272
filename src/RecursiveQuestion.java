@@ -1,8 +1,6 @@
-import java.util.Arrays;
-
 public class RecursiveQuestion {
 	public static void main(String[] args) {
-		for (int i = 0; i < 201; i++) {
+		for (int i = 0; i < 10; i++) {
 			System.out.print(FibBinaryRecursive(i));
 			System.out.print(", ");
 		}
@@ -15,8 +13,8 @@ public class RecursiveQuestion {
 			System.out.println(BinaryPrint(i));
 
 		}
+		Pattern(3, 0);
 
-		System.out.println(FactorialRecursive(10));
 	}
 
 
@@ -34,11 +32,11 @@ public class RecursiveQuestion {
 	}
 
 	/**
-	 * Print out the call levels of a linear binary function
+	 * Print out the call ns of a linear binary function
 	 * @param L the base case or end of the sequence.
 	 * @param curl The starting number of the sequence. (should be 1
 	 *                    usually)
-	 * @return A string containing the call level print.
+	 * @return A string containing the call n print.
 	 */
 	public static String showCallLevel(int L, int curl) {
 		if (L == 0) {
@@ -63,14 +61,14 @@ public class RecursiveQuestion {
 	 */
 	public static void HanoiTower(int a, char from, char aux, char to) {
 		if (a == 1) {
-			System.out.println("Move disc 1 from" + from
-			    + "to "+ to);
+			System.out.println("Move disc 1 from " + from
+			    + " to "+ to);
 		}
 		else {
 			HanoiTower(a - 1, from, to, aux);
 
 			System.out.println("Move disc " + a + " from " + from
-			    + "to " + to);
+			    + " to " + to);
 
 			HanoiTower(a-1, aux, from, to);
 		}
@@ -91,48 +89,34 @@ public class RecursiveQuestion {
 		}
 	}
 
-	public static String pattern(String outs, int n, int i)
-	{
-		int na = (int)(Math.log(n)/Math.log(2));
-		if (na == 0)
-		{
-			StringBuilder outsBuilder = new StringBuilder(outs);
-			for (int k = 0; k < i; k++) outsBuilder.append(' ');
-			for (int k = 0; k < n; k++) outsBuilder.append("* ");
-			outs = outsBuilder.toString();
-			return outs+= '\n';
-		}
-		else
-		{
-			outs = pattern(outs,(int)(Math.pow(2.0,na - 1)),i);
-			for (int k = 0; k < i; k++) outs += ' ';
-			for (int k = 0; k < n; k++) outs += "* ";
-			outs+= '\n';
-			i+= na * 2;
-			return outs = pattern(outs,(int)(Math.pow(2.0,na - 1)),i);
-		}
-	}
 
 	/**
-	 * recursive function to calculate factorial
-	 * @param n the integer you want to calculate the factorial of.
-	 * @return The value of n!
+	 * prints that weird pattern from the book
+	 * @param n max asterisks
+	 * @param fn starting tabs (usually 0)
 	 */
-	public static int FactorialRecursive(int n) {
-		if(n == 1 || n == 0){
-			return 1;
+	public static void Pattern(int n, int fn){
+		if(n == 0){
+			for(int i = 0; i < fn; i++){
+				System.out.print(" ");
+			}
+			System.out.print("*");
+		} else{
+			Pattern(n-1, fn);
+			System.out.println();
+			int count = 2;
+			for(int i = 1; i < n; i++){
+				count = count * 2;
+			}
+			for(int i = 0; i < fn; i++){
+				System.out.print(" ");
+			}
+			for(int i = 0; i < count; i++){
+				System.out.print("*");
+			}
+			System.out.println();
+			Pattern(n-1, count/2 + fn);
 		}
-		return n * FactorialRecursive(n-1);
 	}
 
-	public static void Permutation(int[] arr, int size, int temp) {
-		if(size == 0) {
-			System.out.println("");
-		} else if (size == 1) {
-			System.out.println(Arrays.toString(arr));
-		} else {
-
-		}
-
-	}
 }
