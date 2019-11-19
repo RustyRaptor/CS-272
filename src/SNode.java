@@ -16,7 +16,7 @@ public class SNode<E> {
 		this.link = null;
 	}
 
-	public SNode(E _data, SNode<E> _link) {
+	SNode(E _data, SNode<E> _link) {
 		this.data = _data;
 		this.link = _link;
 	}
@@ -45,8 +45,8 @@ public class SNode<E> {
 	 *
 	 * @param newData the data you want to add (int)
 	 */
-	public void addNodeAfterThis(E newData) {
-		setLink(new SNode<E>(newData, this.link));
+	void addNodeAfterThis(E newData) {
+		setLink(new SNode<>(newData, this.link));
 	}
 
 

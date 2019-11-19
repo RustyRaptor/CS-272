@@ -11,8 +11,8 @@ public class LinkStack<E> implements StackInterface {
 		this.top = top;
 	}
 
-	public LinkStack(){
-		setTop(new SNode<E>(null, null));
+	LinkStack(){
+		setTop(new SNode<>(null, null));
 	}
 
 	@Override
@@ -25,8 +25,8 @@ public class LinkStack<E> implements StackInterface {
 	public E pop() {
 		if (getTop().getLink() != null) {
 			SNode<E> popped =
-			    new SNode<E>(this.getTop().getLink().getData(),
-			    null);
+					new SNode<>(this.getTop().getLink().getData(),
+							null);
 			setTop(getTop().getLink());
 			return popped.getData();
 		}
@@ -45,9 +45,7 @@ public class LinkStack<E> implements StackInterface {
 	public int size() {
 		int count = 0;
 		SNode<E> cursor = getTop().getLink();
-		for (cursor = cursor; cursor != null; cursor = cursor.getLink()){
-			count++;
-		}
+		for (cursor = cursor; cursor != null; cursor = cursor.getLink()) count++;
 		return count;
 	}
 

@@ -4,8 +4,8 @@ public class ArraylistStack<E> implements StackInterface {
 	private ArrayList<E> data;
 	private int cnt;
 
-	public ArraylistStack() {
-		data = new ArrayList<E>();
+	ArraylistStack() {
+		data = new ArrayList<>();
 		cnt = -1;
 	}
 

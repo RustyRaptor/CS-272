@@ -24,7 +24,7 @@ public class RecursiveQuestion {
 	 *                 you want the nth fibonacci number, k is n.
 	 * @return The fibonacci number you requested
 	 */
-	public static int FibBinaryRecursive(int k) {
+	private static int FibBinaryRecursive(int k) {
 		if (k <= 1) {
 			return k;
 		}
@@ -38,7 +38,7 @@ public class RecursiveQuestion {
 	 *                    usually)
 	 * @return A string containing the call n print.
 	 */
-	public static String showCallLevel(int L, int curl) {
+	private static String showCallLevel(int L, int curl) {
 		if (L == 0) {
 			return "\b\b\b\b\b\b";
 		}
@@ -59,7 +59,7 @@ public class RecursiveQuestion {
 	 *                   it to the final peg.  (String 'A', 'B', or 'C')
 	 * @param to Ending Peg  (String 'A', 'B', or 'C')
 	 */
-	public static void HanoiTower(int a, char from, char aux, char to) {
+	private static void HanoiTower(int a, char from, char aux, char to) {
 		if (a == 1) {
 			System.out.println("Move disc 1 from " + from
 			    + " to "+ to);
@@ -79,8 +79,7 @@ public class RecursiveQuestion {
 	 * @param n the decimal number you want to print in binary.
 	 * @return The unsigned binary form of a decimal number
 	 */
-	public static int BinaryPrint(int n){
-		int binary;
+	private static int BinaryPrint(int n){
 		if(n == 0){
 			return 0;
 		}
@@ -95,7 +94,7 @@ public class RecursiveQuestion {
 	 * @param n max asterisks
 	 * @param fn starting tabs (usually 0)
 	 */
-	public static void Pattern(int n, int fn){
+	private static void Pattern(int n, int fn){
 		if(n == 0){
 			for(int i = 0; i < fn; i++){
 				System.out.print(" ");

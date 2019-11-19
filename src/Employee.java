@@ -15,7 +15,7 @@ public class Employee {
     private int[] advisors;
 
     // constructor
-    public Employee() {
+    Employee() {
         this.name = null;
         this.state = null;
         this.zipCode = 0;
@@ -64,7 +64,7 @@ public class Employee {
         return age;
     }
 
-    public void setAge(int age) {
+    void setAge(int age) {
         this.age = age;
     }
 
@@ -80,7 +80,7 @@ public class Employee {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
@@ -88,7 +88,7 @@ public class Employee {
         return advisors;
     }
 
-    public void setAdvisors(int[] advisors) {
+    void setAdvisors(int[] advisors) {
         this.advisors = advisors;
     }
 
@@ -122,7 +122,7 @@ public class Employee {
      * @param e1 an employee object you want to get advisors from
      * @param e2 another employee object to get advisors from
      */
-    public static int[] getAllAdvisors(Employee e1, Employee e2) {
+    private static int[] getAllAdvisors(Employee e1, Employee e2) {
         if ((e1 == null) || (e2 == null)) {
             System.out.println("This Employee is NULL");
             return new int[]{0, 0, 0};
@@ -146,7 +146,7 @@ public class Employee {
      * @param arr1     the first array (will be placed first in the new array)
      * @param arr2     the second array (will be inserted after arr1)
      */
-    public static void mergeArr(int[] arrMerge, int[] arr1, int[] arr2) {
+    private static void mergeArr(int[] arrMerge, int[] arr1, int[] arr2) {
         int cnt = 0;
         for (int i = 0; i < 3; i++) {
             arrMerge[cnt] = arr1[i];
@@ -164,7 +164,7 @@ public class Employee {
     /**
      * @param arr the array you want to sort
      */
-    public static void descBubbleSort(int[] arr) {
+    private static void descBubbleSort(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -183,7 +183,7 @@ public class Employee {
     /**
      * @param arr the array you want to remove duplicates from
      */
-    public static void removeDup(int[] arr) {
+    private static void removeDup(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -202,7 +202,7 @@ public class Employee {
     /**
      * @param arr the array you want to count advisors in
      */
-    public static int countAdv(int[] arr) {
+    private static int countAdv(int[] arr) {
         int n = arr.length;
         int cnt = 0;
         for (int i = 0; i < n - 1; i++) {

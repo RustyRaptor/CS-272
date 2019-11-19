@@ -26,7 +26,7 @@ public class StackTests {
 		    "COMPLETE!!!=====");
 
 	}
-	static void announceTest(String name) {
+	private static void announceTest(String name) {
 		for (int i = 0; i < 50; i++) {
 			System.out.print("=");
 		}
@@ -36,8 +36,8 @@ public class StackTests {
 
 		System.out.println();
 	}
-	static void testListPush(){
-		LinkStack<Integer> test = new LinkStack<Integer>();
+	private static void testListPush(){
+		LinkStack<Integer> test = new LinkStack<>();
 		test.push(1);
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
@@ -46,8 +46,8 @@ public class StackTests {
 		System.out.println(test);
 	}
 
-	static void testListPop(){
-		LinkStack<Integer> test = new LinkStack<Integer>();
+	private static void testListPop(){
+		LinkStack<Integer> test = new LinkStack<>();
 		test.pop();
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
@@ -65,8 +65,8 @@ public class StackTests {
 		System.out.println(test);
 		System.out.println(test.pop());
 	}
-	static void testListTop(){
-		LinkStack<Integer> test = new LinkStack<Integer>();
+	private static void testListTop(){
+		LinkStack<Integer> test = new LinkStack<>();
 		test.top();
 		System.out.println(test.top());
 		test.push(0);
@@ -77,8 +77,8 @@ public class StackTests {
 		System.out.println(test.top());
 
 	}
-	static void testListIsEmpty(){
-		LinkStack<Integer> test = new LinkStack<Integer>();
+	private static void testListIsEmpty(){
+		LinkStack<Integer> test = new LinkStack<>();
 		System.out.println(test.isEmpty());
 		System.out.println(test.isEmpty());
 		test.push(1);
@@ -86,8 +86,8 @@ public class StackTests {
 		test.pop();
 		System.out.println(test.isEmpty());
 	}
-	static void testArrPush(){
-		ArraylistStack<Integer> test = new ArraylistStack<Integer>();
+	private static void testArrPush(){
+		ArraylistStack<Integer> test = new ArraylistStack<>();
 		test.push(1);
 		System.out.println(test);
 		for (int i = 0; i < 10; i++) {
@@ -96,8 +96,8 @@ public class StackTests {
 		System.out.println(test);
 	}
 
-	static void testArrPop(){
-		ArraylistStack<Integer> test = new ArraylistStack<Integer>();
+	private static void testArrPop(){
+		ArraylistStack<Integer> test = new ArraylistStack<>();
 		test.pop();
 		test.isEmpty();
 		System.out.println(test);
@@ -116,8 +116,8 @@ public class StackTests {
 		System.out.println(test);
 		System.out.println(test.pop());
 	}
-	static void testArrTop(){
-		ArraylistStack<Integer> test = new ArraylistStack<Integer>();
+	private static void testArrTop(){
+		ArraylistStack<Integer> test = new ArraylistStack<>();
 		test.top();
 		System.out.println(test.top());
 		test.push(0);
@@ -128,8 +128,8 @@ public class StackTests {
 		System.out.println(test.top());
 
 	}
-	static void testArrIsEmpty(){
-		ArraylistStack<Integer> test = new ArraylistStack<Integer>();
+	private static void testArrIsEmpty(){
+		ArraylistStack<Integer> test = new ArraylistStack<>();
 		System.out.println(test.isEmpty());
 		System.out.println(test.isEmpty());
 		test.push(1);
@@ -137,8 +137,8 @@ public class StackTests {
 		test.pop();
 		System.out.println(test.isEmpty());
 	}
-	static void testArrSize(){
-		ArraylistStack<Integer> test = new ArraylistStack<Integer>();
+	private static void testArrSize(){
+		ArraylistStack<Integer> test = new ArraylistStack<>();
 		test.size();
 		test.push(0);
 		test.size();
