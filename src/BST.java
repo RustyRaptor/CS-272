@@ -29,7 +29,7 @@ class BSTNode{
 	/**
 	 * Constructor with the initial element, initial left and right children
 	 * @param initData: the initial element
-	 * @param initParent: the initial parent tree
+	 * initParent: the initial parent tree
 	 * @param initLeft: left child
 	 * @param initRight: right child
 	 */
@@ -58,7 +58,7 @@ class BSTNode{
 	}
 
 	/**
-	 * @param set the element in this node
+	 * @param data set the element in this node
 	 */
 	public void setData(int data) {
 		this.data = data;
@@ -72,7 +72,7 @@ class BSTNode{
 	}
 
 	/**
-	 * @param the left child to be set
+	 * @param left the left child to be set
 	 */
 	public void setLeft(BST left) {
 		this.left = left;
@@ -86,7 +86,7 @@ class BSTNode{
 	}
 
 	/**
-	 * @param the right child to be set
+	 * @param right the right child to be set
 	 */
 	public void setRight(BST right) {
 		this.right = right;
@@ -150,9 +150,9 @@ public class BST {
 	 *     I slightly changed the method to print right subtree first
 	 *     It is to make the display more easier to read
 	 * 
-	 * @param node
+	 * node
 	 * @param indentation
-	 * @param branch
+	 * branch
 	 */
 	private void inOrderPrt(int indentation){
 		if(root!=null){
@@ -165,7 +165,70 @@ public class BST {
 			if(getLeftSubtree()!=null) getLeftSubtree().inOrderPrt(indentation+1);
 		}
 	}
-	
+	public boolean insert (int e){
+		if (this.root == null) {
+			root = new BSTNode(e);
+			return true;
+		}
+		if (root.getData() == e){
+			return false;
+		}
+		if (this.root != null) {
+			if (this.root.getData() <= e){
+				this.getLeftSubtree().insert(e);
+				return true;
+			}
+			if (this.root.getData() > e){
+				this.getRightSubtree().insert(e);
+				return true;
+			}
+			return true;
+		}
+		return true;
+	}
+
+	public boolean remove (int e){
+		if (this.root == null) {
+			root = new BSTNode(e);
+			return true;
+		}
+		if (root.getData() == e){
+			if (getLeftSubtree().root == null && getRightSubtree().root == null){
+				root = null;
+			}
+			if (getLeftSubtree().root == null && getRightSubtree().root != null){
+				root = getRightSubtree().root;
+			}
+			if (getLeftSubtree().root != null && getRightSubtree().root == null){
+				root = getLeftSubtree().root;
+			}
+			if (getLeftSubtree().root != null && getRightSubtree().root != null){
+				int maxDataLeft =
+			}
+
+			return true;
+		}
+		if (this.root != null) {
+			if (this.root.getData() <= e){
+				this.getLeftSubtree().insert(e);
+				return true;
+			}
+			if (this.root.getData() > e){
+				this.getRightSubtree().insert(e);
+				return true;
+			}
+			return true;
+		}
+		return true;
+	}
+
+	public int removeMax(){
+		BSTNode RT = this.getRightSubtree().root;
+		int maxData;
+		if (RT == null){
+			maxData = ;
+		}
+	}
 	
 	/**
 	 * Debug function, print the tree for debugging purpose
@@ -201,88 +264,90 @@ public class BST {
 		rc = tree.insert(5);  System.out.println("\nInsert 5, inserted="+rc+", after adding 5:"); tree.inOrderPrt();
 		rc = tree.insert(9);  System.out.println("\nInsert 9, inserted="+rc+", after adding 9:"); tree.inOrderPrt();
 		rc = tree.insert(20);  System.out.println("\nInsert 20, inserted="+rc+", after adding 20:"); tree.inOrderPrt();
+		rc = tree.insert(20);  System.out.println("\nInsert 20 " +
+		    "AGAIN?, inserted="+rc+", after adding 20:"); tree.inOrderPrt();
 		
 		System.out.println("Inorder traversal results:");
 		tree.inOrderPrt(); 
 		System.out.print("\n\n");
 		
 		//test 3: search method
-		BSTNode node = tree.searchRecursion(6);
-		System.out.println("searchRecursion 6, node="+node);
-		node = tree.searchRecursion(22);
-		System.out.println("searchRecursion 22, node="+node);
-		node = tree.searchRecursion(8);
-		System.out.println("searchRecursion 8, node="+node+"\n");
+//		BSTNode node = tree.searchRecursion(6);
+//		System.out.println("searchRecursion 6, node="+node);
+//		node = tree.searchRecursion(22);
+//		System.out.println("searchRecursion 22, node="+node);
+//		node = tree.searchRecursion(8);
+//		System.out.println("searchRecursion 8, node="+node+"\n");
+//
+//		node = tree.searchNonRecursion(6);
+//		System.out.println("searchNonRecursion 6, node="+node);
+//		node = tree.searchNonRecursion(22);
+//		System.out.println("searchNonRecursion 22, node="+node);
+//		node = tree.searchNonRecursion(8);
+//		System.out.println("searchNonRecursion 8, node="+node);
+//
+//		//test 4: remove method
+//		rc = tree.remove(30); //test case 0: e does not exist
+//		System.out.println("\nRemove 30, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(20); //test case 1: leaf
+//		System.out.println("\nRemove 20, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(4); //test case 2: left is empty
+//		System.out.println("\nRemove 4, rc="+rc);
+//		tree.inOrderPrt();
+//
+//
+//		rc = tree.remove(19); //test case 3: right is empty
+//		System.out.println("\nRemove 19, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(6); //test case 4: no subtree is empty
+//		System.out.println("\nRemove 6, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(12); //more tests: remove root
+//		System.out.println("\nRemove 12, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(8); //more tests
+//		System.out.println("\nRemove 8, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(5); //more tests
+//		System.out.println("\nRemove 5, rc="+rc);
+//		tree.inOrderPrt();
+//
+//		rc = tree.remove(8); //more tests
+//		System.out.println("\nRemove 8, rc="+rc);
+//		tree.inOrderPrt();
+//		rc = tree.remove(16); //more tests
+//		System.out.println("\nRemove 16, rc="+rc);
+//		tree.inOrderPrt();
+//		System.out.print("sum="+tree.sum()+"\n");
 		
-		node = tree.searchNonRecursion(6);
-		System.out.println("searchNonRecursion 6, node="+node);
-		node = tree.searchNonRecursion(22);
-		System.out.println("searchNonRecursion 22, node="+node);
-		node = tree.searchNonRecursion(8);
-		System.out.println("searchNonRecursion 8, node="+node);
-		
-		//test 4: remove method
-		rc = tree.remove(30); //test case 0: e does not exist
-		System.out.println("\nRemove 30, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(20); //test case 1: leaf
-		System.out.println("\nRemove 20, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(4); //test case 2: left is empty
-		System.out.println("\nRemove 4, rc="+rc);
-		tree.inOrderPrt();
-		
-		
-		rc = tree.remove(19); //test case 3: right is empty
-		System.out.println("\nRemove 19, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(6); //test case 4: no subtree is empty
-		System.out.println("\nRemove 6, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(12); //more tests: remove root
-		System.out.println("\nRemove 12, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(8); //more tests
-		System.out.println("\nRemove 8, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(5); //more tests
-		System.out.println("\nRemove 5, rc="+rc);
-		tree.inOrderPrt();
-		
-		rc = tree.remove(8); //more tests
-		System.out.println("\nRemove 8, rc="+rc);
-		tree.inOrderPrt();
-		rc = tree.remove(16); //more tests
-		System.out.println("\nRemove 16, rc="+rc);
-		tree.inOrderPrt();
-		System.out.print("sum="+tree.sum()+"\n");
-		
-		System.out.println("\nAdding a series of numbers:");
-		tree.insert(30);
-		tree.insert(20);tree.insert(10);tree.insert(25);tree.insert(28);tree.insert(24);
-		tree.insert(11);tree.insert(5);tree.insert(11);tree.insert(12);
-		tree.insert(50);tree.insert(40);tree.insert(35);
-		tree.inOrderPrt();
-		System.out.print("sum="+tree.sum()+"\n");
-		
-		System.out.print("sum="+tree.sum()+"\n");
-		System.out.print("\n\n");
-		
-		System.out.println("\nRemove 20 (removeNode case 4):");
-		tree.remove(20);
-		tree.inOrderPrt();
-		System.out.print("sum="+tree.sum()+"\n");
-		
-		System.out.println("Inorder traversal results: ");
-		tree.inOrderPrt();
-		System.out.print("\n");
-		System.out.print("sum="+tree.sum()+"\n");
+//		System.out.println("\nAdding a series of numbers:");
+//		tree.insert(30);
+//		tree.insert(20);tree.insert(10);tree.insert(25);tree.insert(28);tree.insert(24);
+//		tree.insert(11);tree.insert(5);tree.insert(11);tree.insert(12);
+//		tree.insert(50);tree.insert(40);tree.insert(35);
+//		tree.inOrderPrt();
+//		System.out.print("sum="+tree.sum()+"\n");
+//
+//		System.out.print("sum="+tree.sum()+"\n");
+//		System.out.print("\n\n");
+//
+//		System.out.println("\nRemove 20 (removeNode case 4):");
+//		tree.remove(20);
+//		tree.inOrderPrt();
+//		System.out.print("sum="+tree.sum()+"\n");
+//
+//		System.out.println("Inorder traversal results: ");
+//		tree.inOrderPrt();
+//		System.out.print("\n");
+//		System.out.print("sum="+tree.sum()+"\n");
 	}
 	
 	/**
