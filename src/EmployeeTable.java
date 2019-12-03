@@ -26,8 +26,6 @@ public class EmployeeTable {
 		this.keys = new Integer[701];
 		this.used = new boolean[701];
 	}
-
-
 	/**
 	 * @param key they key of the new item
 	 * @param obj the new items value
@@ -117,7 +115,11 @@ public class EmployeeTable {
 		this.used = used;
 	}
 
-
+	/**
+	 * runs the code to import the employees and add them to a hashmap
+	 *
+	 * @throws IOException if the file isn't there.
+	 */
 	private static void HashMapRead() throws IOException {
 		String line;
 		String[] items;
@@ -177,7 +179,5 @@ public class EmployeeTable {
 		test.search(1106026572);
 		System.out.println(test);
 		HashMapRead();
-
-
 	}
 }
