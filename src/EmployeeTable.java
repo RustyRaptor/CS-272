@@ -1,10 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Hashtable;
 
 public class EmployeeTable {
 	private Employee[] data;
@@ -120,10 +118,9 @@ public class EmployeeTable {
 	}
 
 
-	public static void HashMapRead() throws IOException {
+	private static void HashMapRead() throws IOException {
 		String line;
 		String[] items;
-		Employee temp;
 		HashMap<Integer, Employee> workers = new HashMap<>();
 		BufferedReader reader =
 		    new BufferedReader(new FileReader("core_dataset.csv"));
